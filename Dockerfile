@@ -1,12 +1,9 @@
 FROM ubuntu:latest
 
-MAINTAINER Venatus Digital
+MAINTAINER BattleRattt
 
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y tar curl gcc g++ libc6-i386 lib32gcc1 lib32tinfo5 lib32z1 lib32stdc++6 libtinfo5:i386 libncurses5:i386 libcurl3-gnutls:i386 && \
-    useradd -d /home/container -m container
+RUN apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
+    && adduser -D -h /home/container container
 
 USER container
 ENV  USER container
